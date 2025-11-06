@@ -1,18 +1,21 @@
 const express = require("express");
-const path = require("path"); // Import the path module
+const path = require("path");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Serve static files from the 'public' directory
+// Serve static build output
+app.use("/dist", express.static(path.join(__dirname, "dist")));
+
+// Serve static assets from 'public'
 app.use(express.static(path.join(__dirname, "public")));
 
-// Optional: Serve a specific HTML file for the root route (e.g., index.html)
-app.get("/", (req, res) => {
-  const _path = path.join(__dirname, "index.html");
-  res.sendFile(_path);
-});
+// Serve static files from 'static'
+app.use(express.static(path.join(__dirname, "static")));
 
-app.use(express.static("static"));
+// Optional: serve index.html on root
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "index.html"));
+});
 
 // Start the server
 app.listen(PORT, () => {

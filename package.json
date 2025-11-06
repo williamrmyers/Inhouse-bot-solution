@@ -5,12 +5,21 @@
   "main": "script.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "dev": "nodemon server.js",
+    "build": "rollup -c",
+    "watch": "rollup -c --watch"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@fingerprintjs/botd": "^2.0.0",
     "express": "^5.1.0",
+    "nodemon": "^3.1.10",
     "puppeteer": "^24.26.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^29.0.0",
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "rollup": "^4.52.5"
   }
 }

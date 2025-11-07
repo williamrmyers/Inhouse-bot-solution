@@ -11,12 +11,10 @@ import {
   probeInteraction,
 } from "./signals.js";
 
-// Initialize the agent at application startup.
-const botdPromise = import("https://openfpcdn.io/botd/v2").then((Botd) =>
-  Botd.load()
-);
+import { load } from "@fingerprintjs/botd";
+
 // Get detection results when you need them.
-botdPromise
+load()
   .then((botd) => botd.detect())
   .then((result) => setFCookie(result))
   .catch((error) => console.error(error));
